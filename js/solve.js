@@ -58,7 +58,10 @@ function solver(maze, stack)
     var cell = maze.cells[x][y];
 
     cell.visited = true;
-    cell.token.style.backgroundPosition = "center";  
+    cell.token.style.backgroundImage = "url(images/mario.gif)";   
+    cell.token.style.backgroundPosition = "center";
+  
+
     
     // see if we're at the exit
     if((x == (columns - 1)) && (y == (rows - 1)))

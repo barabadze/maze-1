@@ -107,7 +107,7 @@
 		<div>
 		<h3>C'est fini la labyrinthe est r&eacute;solu.</h3>
 		<a href="#" onclick='overlay()'>Fermer </a>
-		<img src="images/resolu.png" alt="resolu" />
+		<img src="images/resolu.jpg" alt="resolu" />
 		</div>
 	</div>
     <div id="masthead">
@@ -133,15 +133,7 @@
                 <td>La largeur:</td>
                 <td><input style="width: 60px;" value="30" name="x" type="text"></td>
               </tr>
-              <tr>
-                <td>largeur des chemin:</td>
-                <td><input style="width: 60px;" value="20" name="s" type="text"></td>
-                <td>
-                  <label>Anfractuosit&eacute;: </label>
-                  <input id="n2" value="lo" name="anfr" checked="checked" type="radio"><label for="n2">bas</label>
-                  <input id="n1" value="hi" name="anfr" type="radio"><label for="n1">haut</label>
-                </td>
-              </tr>
+       
             </tbody>
           </table>
           <div>

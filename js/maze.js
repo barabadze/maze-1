@@ -20,9 +20,7 @@ function generator(maze)
 {
     stopSolver(); // make sure that the solver is shutdown first
     
-    switch(maze.type)
-    {
-        case 0:
+
         
             var L = new Array();
             var R = new Array();
@@ -36,21 +34,8 @@ function generator(maze)
             iter(function (row) { return eller(maze, L, R, row) }, rows - 1, function () { builder(maze) }, 
                     function(i, n) { progress("generating", i, n) });     
         
-            break;
-            
-        case 1:
-        
-            /* a stack containing coordinates of the current cell and */
-            /* a scrambled list of the direction to its neighbors */
-            var stack = [ { x: Math.floor(rnd() * columns), y: Math.floor(rnd() * rows), neighbors: dirs.shuffle() } ] ;
-    
-            iter(function () { return dfs(maze, stack) }, rows * columns, function () { builder(maze) }, 
-                    function(i, n) { progress("generating", i, n) });
-            
-            break;
-    }
+          
 }
-
 /**
  * Generates the maze using the Depth-First Search algorithm
  */
@@ -289,12 +274,11 @@ function displayer(parent, token)
 /**
  * A maze object, which is an 2D array of cells
  */
-function maze(type)
+function maze()
 {
     this.cells = new Array();
     this.start = {x: 0, y: 0};
     this.end   = {x: columns - 1, y: rows - 1};
-    this.type  = type;
     this.visitedCount = 0;
     
     /**
@@ -441,32 +425,9 @@ function xor(inx)
 window.onload = function()
 {
     document.forms.mazeform.bld.disabled = false;   
-    checkURL();
+    
 }
 
-/**
- * Check to see if there are predefined values in the URL
- */
-function checkURL()
-{
-    var params = xor(location.search.substr(1)).split(";");
-    
-    if(params.length == 5)
-    {
-        var type = Number(params[0]);
-        var seed = Number(params[1]);
-        var rows = Number(params[2]);
-        var cols = Number(params[3]);
-        var size = Number(params[4]);
-        
-        document.forms.mazeform.y.value = rows;
-        document.forms.mazeform.x.value = cols;
-        document.forms.mazeform.s.value = size;
-        document.forms.mazeform.anfr[type].checked = true;
-        
-        dom(rows, cols, size, type, seed);
-    }    
-}
 
 /**
  * Creates the maze and renders it on the page.
@@ -475,27 +436,21 @@ function build()
 {
     columns = Number(document.forms.mazeform.x.value);
     rows    = Number(document.forms.mazeform.y.value);
-    size    = Number(document.forms.mazeform.s.value);
+    size    = 20; //on me le size des chemins
     seed    = Math.floor(Math.random() * 1000000000);
+  
     
-    var type = 0;
-    if(document.forms.mazeform.anfr[1].checked)
-    {
-        type = 1;
-    }
-    
-    dom(rows, columns, size, type, seed);
+    dom(rows, columns, size,seed);
 }
 
 /**
  *
  */
-function dom(nrows, ncolumns, nsize, ntype, seed)
+function dom(nrows, ncolumns, nsize,seed)
 {
     rows     = nrows;
     columns  = ncolumns;
     size     = nsize;
-    type     = ntype;
     rnd.seed = seed;
     
     /* disable the Generate and Solve buttons until it's generated */
@@ -557,7 +512,7 @@ function dom(nrows, ncolumns, nsize, ntype, seed)
     }
     
     /* create maze object */
-    instance = new maze(type);
+    instance = new maze();
     
     /* render and display */
     instance.build();

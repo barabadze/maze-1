@@ -474,29 +474,5 @@ dd
   display: none;
 }
 
- .cell
-      {
-          float: left;
-          border-right: 1px solid transparent;
-          border-bottom: 1px solid transparent;
-          margin-right: -1px;
-          margin-bottom: -1px;
-          background: url(../images/breadcrumb.png) no-repeat -10px;
-      }
-
-      .left { border-left: 1px solid #000000; }
-      .right { border-right: 1px solid #000000; }
-      .top { border-top: 1px solid #000000; }
-      .bottom { border-bottom: 1px solid #000000; }
-
-      .noleft { border-left: 1px solid transparent; }
-      .noright { border-right: 1px solid transparent; }
-      .notop { border-top: 1px solid transparent; }
-      .nobottom { border-bottom: 1px solid transparent; }
-
-      .mrow
-      {
-          float: left;
-      }
 
 
